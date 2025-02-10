@@ -17,7 +17,7 @@ import { UserExperiencesModule } from './endpoints/user-experiences/user-experie
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: environments[process.env.RESUME_NODE_ENV || 'dev'],
+      envFilePath: environments[process.env.RESUME_NODE_ENV || 'prod'],
       load: [config],
       isGlobal: true,
       validationSchema: Joi.object({
