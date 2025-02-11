@@ -30,12 +30,13 @@ export class ResumeService {
 
     // Start the header text below the avatar
     const textYPosition = avatarYPosition + avatarSize + 10; // 10 is the spacing from the avatar
-    doc.moveDown();
-    doc.moveDown();
-    doc.moveDown();
-    doc.moveDown();
-    doc.moveDown();
-
+    if (userData.avatar) {
+      doc.moveDown();
+      doc.moveDown();
+      doc.moveDown();
+      doc.moveDown();
+      doc.moveDown();
+    }
     // Add Name and Contact Info in the center aligned
     doc.fontSize(20).text(`${userData.firstName} ${userData.lastName}`, { align: 'center' });
     doc.fontSize(12).text(`${userData.email} | ${userData.phoneNumber}`, { align: 'center' });
