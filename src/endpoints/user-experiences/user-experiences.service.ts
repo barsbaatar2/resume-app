@@ -37,8 +37,8 @@ export class UserExperiencesService {
     return targetUserIds;
   }
 
-  async getUserExperiences(id: number): Promise<UserExperience> {
-    const userExperiences = await this.userExperiencesRepository.findOne({
+  async getUserExperiences(id: number): Promise<UserExperience[]> {
+    const userExperiences = await this.userExperiencesRepository.find({
       where: { userId: id },
     });
     if (!userExperiences) {
