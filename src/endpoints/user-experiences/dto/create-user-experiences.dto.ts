@@ -3,10 +3,13 @@ import { IsString, IsEmail, IsEnum, IsNumber, IsDateString, IsBoolean, IsOptiona
 
 export class CreateUserExperiencesDto {
   userId: number;
-
   @ApiProperty()
   @IsString()
   name: string;
+
+  @ApiProperty()
+  @IsString()
+  year: string;
 }
 
 export class UpdateUserExperiencesDto extends PartialType(CreateUserExperiencesDto) {}
