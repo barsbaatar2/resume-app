@@ -17,6 +17,7 @@ export class ResumeService {
     const doc = new PDFDocument();
     doc.pipe(fs.createWriteStream(filePath));
 
+    doc.font('fonts/NotoSans-Regular.ttf')
     // Define avatar size and positioning
     const avatarSize = 80;
     const avatarXPosition = (doc.page.width - avatarSize) / 2; // Centering horizontally
