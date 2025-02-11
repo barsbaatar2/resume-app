@@ -8,8 +8,8 @@ export class CreateUserExperiencesDto {
   name: string;
 
   @ApiProperty()
-  @IsString()
-  year: string;
+  @IsNumber()
+  year: number;
 }
 
 export class UpdateUserExperiencesDto extends PartialType(CreateUserExperiencesDto) {}

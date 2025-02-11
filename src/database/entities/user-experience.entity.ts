@@ -7,8 +7,8 @@ export class UserExperience extends DefaultEntity {
   @Column({default: null})
   name: string;
 
-  @Column({default: null})
-  year: string;
+  @Column({default: 0})
+  year: number;
 
   @Column()
   userId: number;
