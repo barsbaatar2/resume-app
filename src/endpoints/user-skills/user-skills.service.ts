@@ -37,8 +37,8 @@ export class UserSkillsService {
     return targetUserIds;
   }
 
-  async getUserSkills(id: number): Promise<UserSkill> {
-    const userSkills = await this.userSkillsRepository.findOne({
+  async getUserSkills(id: number): Promise<UserSkill[]> {
+    const userSkills = await this.userSkillsRepository.find({
       where: { userId: id },
     });
     if (!userSkills) {
