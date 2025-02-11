@@ -52,7 +52,8 @@ import { ResumeService } from './endpoints/users/resume.service';
       },
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // Serve files from 'public' folder
+      rootPath: join(__dirname, '..', 'dist', 'public'),
+      serveRoot: '/',
     }),
     UsersModule,
     AuthModule,

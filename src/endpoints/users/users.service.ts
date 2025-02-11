@@ -53,7 +53,7 @@ export class UsersService {
 
     const resume = await this.resumeService.generateResume(user);
     const publicDirIndex = resume.indexOf('/public');
-    const relativePath = resume.substring(publicDirIndex);
+    const relativePath = resume.substring(publicDirIndex + 7);
 
     const result = await this.userRepository.update(id, {
       pdfData: relativePath,
