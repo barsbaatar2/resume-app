@@ -13,6 +13,9 @@ import { UsersModule } from './endpoints/users/users.module';
 import { AuthModule } from './endpoints/auth/auth.module';
 import { UserSkillsModule } from './endpoints/user-skills/user-skills.module';
 import { UserExperiencesModule } from './endpoints/user-experiences/user-experiences.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { ResumeService } from './endpoints/users/resume.service';
 
 @Module({
   imports: [
@@ -48,13 +51,16 @@ import { UserExperiencesModule } from './endpoints/user-experiences/user-experie
         };
       },
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'), // Serve files from 'public' folder
+    }),
     UsersModule,
     AuthModule,
     UserSkillsModule,
     UserExperiencesModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ResumeService],
 })
 
 export class AppModule implements NestModule {

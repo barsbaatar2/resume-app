@@ -10,12 +10,15 @@ import {
 } from './dto/create-user.dto';
 import { User } from 'src/database/entities/user.entity';
 import { PayloadToken } from 'src/models/token.model';
+import { ResumeService } from './resume.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+
+    private readonly resumeService: ResumeService,
   ) { }
 
   async create(createUserDto: CreateUserDto) {
@@ -31,6 +34,33 @@ export class UsersService {
 
     let saveUser = await this.userRepository.save(createdUser);
     return { message: 'success', result: saveUser };
+  }
+
+  async generatePdf(id: number) {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: id
+      },
+      relations: {
+        skills: true,
+        experiences: true
+      }
+    });
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    const resume = await this.resumeService.generateResume(user);
+    const publicDirIndex = resume.indexOf('/public');
+    const relativePath = resume.substring(publicDirIndex);
+
+    const result = await this.userRepository.update(id, {
+      pdfData: relativePath,
+      pdfDate: new Date(),
+    });
+
+    return { message: 'success', result: relativePath };
   }
 
   async findAll(

@@ -71,4 +71,15 @@ export class UsersController {
     return this.usersService.remove(id);
   }
 
+  @ApiOperation({ summary: 'create a user resume' })
+  @ApiResponse({
+    status: 201,
+    type: DefaultColumnsResponse,
+  })
+  @ApiBearerAuth('access-token')
+  @Post('resume') 
+  async generatePdf(@Request() req: { user: PayloadToken }) {
+    return this.usersService.generatePdf(req.user.id);
+  }
+
 }
