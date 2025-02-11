@@ -89,4 +89,9 @@ export class User extends DefaultEntity {
   @OneToMany(() => UserExperience, (experiences) => experiences.user)
   experiences: UserExperience[];
 
+  @Column({ nullable: true })
+  pdfData: string;
+
+  @Column({ type: 'timestamp with time zone', nullable: true })
+  pdfDate: Date;
 }
